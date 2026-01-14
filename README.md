@@ -1,4 +1,4 @@
-# Vision-Based Color Sorting Robotic Arm 🤖🎨
+# Vision-Based Color Sorting Robotic Arm 
 
 This project focuses on building a **vision-based robotic arm** that can detect object colors and sort them automatically.  
 Instead of relying on fixed positions or hardcoded logic, the robot observes its workspace through a camera, makes decisions in real time, and performs smooth pick-and-place operations.
