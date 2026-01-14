@@ -57,10 +57,10 @@ Based on the detected color and user selection, the robot dynamically chooses th
 
 ## 👥 Team Members
 
-- Kundan Bodkhe - Computer vision, logic, and Python control
-- Chaitanya Belekar - Hardware setup, testing, and debugging 
-- Arnab Nath -  Robotic arm control and servo tuning  
-- Sanmitra Dhamane  - System design and integration  
+- Kundan Bodkhe
+- Chaitanya Belekar
+- Arnab Nath
+- Sanmitra Dhamane
 
 ---
 
