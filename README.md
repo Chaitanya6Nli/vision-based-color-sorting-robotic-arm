@@ -14,6 +14,16 @@ Based on the detected color and user selection, the robot dynamically chooses th
 
 ---
 
+## 📂 Code Structure
+
+- `main_controller.py`  
+  Handles camera input, color detection, keyboard control, decision-making, and serial communication with the robotic arm.
+
+- `arduino_code.ino`  
+  Controls servo motors and executes commands received from Python via serial communication.
+
+---
+
 ## ⚙️ Key Features
 
 - Color detection using **OpenCV**
