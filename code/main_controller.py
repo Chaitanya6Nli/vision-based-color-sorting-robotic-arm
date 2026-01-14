@@ -30,7 +30,7 @@ HOME = {
 state = HOME.copy()
 
 # TARGET STORAGE
-SAVE_FILE = "targets01.json"
+SAVE_FILE = "../data/targets01.json"
 
 target_1 = []
 target_2 = []
