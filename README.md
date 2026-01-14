@@ -66,8 +66,8 @@ Based on the detected color and user selection, the robot dynamically chooses th
 ## 📷 Demo
 
 <img width="200" height="200" alt="image" src="https://github.com/user-attachments/assets/f9804cf4-fec4-41ad-ae7c-1000530aaa33" />
-<img width="400" height="400" alt="image" src="https://github.com/user-attachments/assets/9e99acb4-d5b3-4ae6-8270-c3f219ec2478" />
-<img width="400" height="400" alt="image" src="https://github.com/user-attachments/assets/5b448636-2558-4f27-913d-232ab991dd0d" />
+<img width="200" height="200" alt="image" src="https://github.com/user-attachments/assets/9e99acb4-d5b3-4ae6-8270-c3f219ec2478" />
+<img width="200" height="200" alt="image" src="https://github.com/user-attachments/assets/5b448636-2558-4f27-913d-232ab991dd0d" />
 
 https://github.com/user-attachments/assets/58ca5c0b-6671-4cd8-b82f-40362ce6ed13
 
