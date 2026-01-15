@@ -1,61 +1,124 @@
-# Vision-Based Color Sorting Robotic Arm 
+# Vision-Based Color Sorting Robotic Arm
 
-This project focuses on building a **vision-based robotic arm** that can detect object colors and sort them automatically.  
-Instead of relying on fixed positions or hardcoded logic, the robot observes its workspace through a camera, makes decisions in real time, and performs smooth pick-and-place operations.
+This project demonstrates a **vision-based robotic arm system** capable of detecting object colors using a camera and autonomously performing pick-and-place sorting operations.
+Unlike traditional robotic arms that rely only on fixed, pre-programmed positions, this system integrates **visual perception, decision-making logic, and smooth motion control** to decide when and where to move based on real-time observations.
 
-The goal was to simulate a **real-world industrial sorting system** where vision, decision-making, and actuation work together.
-
----
-
-## 🔍 Project Overview
-
-The robotic arm uses a camera and computer vision to identify object colors (Green and Blue).  
-Based on the detected color and user selection, the robot dynamically chooses the correct pick position and sorts the object into the appropriate bin.
+The project is inspired by **industrial sorting systems**, where robots must adapt their actions based on sensor input rather than static assumptions.
 
 ---
 
-## 📂 Code Structure
+## Demo
 
-- `main_controller.py`  
-  Handles camera input, color detection, keyboard control, decision-making, and serial communication with the robotic arm.
-
-- `arduino_code.ino`  
-  Controls servo motors and executes commands received from Python via serial communication.
+https://github.com/user-attachments/assets/58ca5c0b-6671-4cd8-b82f-40362ce6ed13
 
 ---
 
-## ⚙️ Key Features
+## System Architecture Overview
 
-- Color detection using **OpenCV**
-- Dynamic selection of pick positions (no hardcoding)
-- Smooth servo-controlled robotic arm motion
-- Manual teaching of pick positions with saved reuse
-- Automated color-based sorting logic
-- Integration of **Python**, **Arduino**, and hardware control
-
----
-
-## 🧠 Workflow
-
-1. Manually teach pick positions for Target 1 and Target 2  
-2. Camera continuously monitors the workspace  
-3. User selects the desired color (Green / Blue)  
-4. Robot detects the object color  
-5. Robotic arm picks the object and sorts it into the correct bin  
+```mermaid
+flowchart TD
+    A((USB Camera)) --> B("Computer Vision (OpenCV - Python)");
+    B("Computer Vision (OpenCV - Python)")-->C([Decision Logic]);
+    C([Decision Logic])-->D{{Motion Command Generation}};
+    D{{Motion Command Generation}}-->E[/Serial Communication/];
+    E[/Serial Communication/]-->F[\Arduino Uno\];
+    F[\Arduino Uno\]-->G[/Servo Motors\];
+    G[/Servo Motors\]-->H[\Robotic Arm/]
+```
+- **Vision and decision-making** are handled on the PC using Python
+- **Real-time motor control** is handled by the Arduino
+- Communication between the two is achieved using **serial communication**
 
 ---
 
-## 🛠️ Technologies Used
+## Hardware Components
 
-- Python  
-- OpenCV  
-- Arduino  
-- Servo Motors  
-- Robotics & Automation Concepts  
+| Component | Purpose  |
+|---------------|-----------|
+| 3D Printed Robotic Arm (Purchased)  | Mechanical structure for pick-and-place tasks |
+| Arduino Uno | Controls servo motors and generates PWM signals |
+| USB Camera | Captures live video of the workspace | 
+| SG90 Servo Motors | Used for low-load joints |
+| MG995 Servo Motors | Used for high-torque joints |
+| SMPS (Switched Mode Power Supply) | Provides stable external power for servo motors | 
 
 ---
 
-## 👥 Team Members
+## Software Architecture
+
+**Python (PC Side)**
+- Captures live video from the USB camera
+- Performs color detection using OpenCV
+- Implements decision-making logic
+- Generates smooth joint trajectories
+- Sends joint angle commands to Arduino via serial communication
+
+**Arduino (Microcontroller Side)**
+- Receives joint angle commands
+- Generates PWM signals
+- Drives servo motors for each joint
+
+---
+
+## Computer Vision & Color Detection
+
+The vision system uses **classical computer vision techniques** (not machine learning):
+
+1. Capture frame from USB camera
+2. Convert image from **BGR to HSV color space**
+3. Apply color thresholding for Green and Blue
+4. Perform morphological operations to reduce noise
+5. Detect contours and filter by area
+6. Estimate object position (left/right) to select target
+
+HSV color space is used because it separates color information from illumination, making detection more robust to lighting variations.
+
+---
+
+## Motion Control & Teach-and-Repeat Mechanism
+
+The robotic arm is controlled in joint space, not using inverse kinematics.
+
+### Manual Teaching
+- Joints are manually controlled using keyboard inputs
+- Valid pick positions are recorded
+- Positions are saved into a JSON file (targets01.json)
+
+### Automated Execution
+- Stored joint sequences are replayed during automation
+- Smooth motion is achieved using linear interpolation between joint states
+- This prevents jerky movements and reduces mechanical stress
+
+This approach mirrors real-world teach-and-repeat industrial robots.
+
+---
+
+## Setup & Execution (Basic)
+
+1. Upload arduino_code.ino to Arduino Uno
+2. Connect servo motors and external SMPS
+3. Connect USB camera to PC
+4. Install Python dependencies:
+```
+pip install opencv-python numpy pyserial keyboard
+```
+5. Update the correct serial port in main_controller.py
+6. Run:
+```
+python main_controller.py
+```
+---
+
+## Future Improvements
+
+- ROS2-based digital twin for simulation and testing
+- Automatic color selection without user input
+- Improved robustness under varying lighting conditions
+- Inverse kinematics-based motion planning
+
+---
+
+## Team Members
 
 - Kundan Bodkhe
 - Chaitanya Belekar
@@ -64,21 +127,8 @@ Based on the detected color and user selection, the robot dynamically chooses th
 
 ---
 
-## 📌 Future Improvements
-  
-- Improve object detection accuracy
-- voice controlled based inputs
-- Implement full automation without user color selection  
-- Agentic AI based decision-making  
+## Final Note
+
+This project emphasizes **practical robotics engineering**, combining perception, decision-making, and actuation into a working hardware system. It serves as a strong foundation for advanced robotics concepts such as simulation, kinematics, and ROS-based digital twins.
 
 ---
-
-## 📷 Demo
-
-<img width="400" height="400" alt="image" src="https://github.com/user-attachments/assets/f9804cf4-fec4-41ad-ae7c-1000530aaa33" />
-<img width="400" height="400" alt="image" src="https://github.com/user-attachments/assets/9e99acb4-d5b3-4ae6-8270-c3f219ec2478" />
-<img width="400" height="400" alt="image" src="https://github.com/user-attachments/assets/5b448636-2558-4f27-913d-232ab991dd0d" />
-
-https://github.com/user-attachments/assets/58ca5c0b-6671-4cd8-b82f-40362ce6ed13
-
-
