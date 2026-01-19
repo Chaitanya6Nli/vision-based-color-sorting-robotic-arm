@@ -126,9 +126,3 @@ python main_controller.py
 - Sanmitra Dhamane
 
 ---
-
-## Final Note
-
-This project emphasizes **practical robotics engineering**, combining perception, decision-making, and actuation into a working hardware system. It serves as a strong foundation for advanced robotics concepts such as simulation, kinematics, and ROS-based digital twins.
-
----
